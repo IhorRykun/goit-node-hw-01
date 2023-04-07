@@ -27,16 +27,13 @@ async function addContact(data) {
   return newContact;
 }
 
-async function removeContact(data) {
+async function removeContact(id) {
   const allContacts = await listContacts();
-  const index = allContacts.findIndex((item) => item.id === data.id);
-
-  const deleteProduct = allContacts[index];
-  if (index !== -1) {
-    allContacts.splice(index, 1);
-    await fs.writeFile(contactsPath, JSON.stringify(allContacts));
-  }
-  return deleteProduct ? deleteProduct : null;
+  const contacts = await getContactById(id);
+  const newContact = allContacts.filter((contacts) => contacts.id !== id);
+  await fs.writeFile(contactsPath, JSON.stringify(newContact));
+  console.log(newContact);
+  return;
 }
 
 module.exports = {

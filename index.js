@@ -18,8 +18,12 @@ const invokeAction = async ({ action, id, data }) => {
       console.log(contact);
       break;
     case "removeContact":
-      const contactRemove = await operations.removeContact(data);
+      const contactRemove = await operations.removeContact(id);
       console.log(contactRemove);
+      break;
+
+    default:
+      throw new errors(`Action ${action} not found`);
   }
 };
 
@@ -27,15 +31,14 @@ const invokeAction = async ({ action, id, data }) => {
 
 // invokeAction({ action: "getContactById", id: "05olLMgyVQdWRwgKfg5J6" });
 
-const newData = {
-  name: "Ivan Semi",
-  email: "IvanSemi@gmail.com",
-  phone: "(099) 231-11234"
-};
-invokeAction({ action: "addContact", data: newData });
-
+// const newData = {
+//   name: "Ivan Semi",
+//   email: "IvanSemi@gmail.com",
+//   phone: "(099) 231-11234"
+// };
+// invokeAction({ action: "addContact", data: newData });
 
 // invokeAction({
 //   action: "removeContact",
-//   data: "c2d1eeeb-ee14-408a-b78d-f0365f9f2672"
+//   id: "e400533e-b7ab-450a-81aa-01a908442081"
 // });
