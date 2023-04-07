@@ -24,5 +24,6 @@ async function getContactById(id) {
 // }
 
 module.exports = {
-  listContacts
+  listContacts,
+  getContactById
 };

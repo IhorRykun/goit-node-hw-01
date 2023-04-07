@@ -7,11 +7,11 @@ const invokeAction = async ({ action, id, data }) => {
       console.log(contacts);
       break;
     case "getContactById":
-      const getContactById = await operations.getContactById(id);
-      console.log(getContactById);
+      const result = await operations.getContactById(id);
+      console.log(result);
       break;
   }
 };
 
 id = "AeHIrLTr6JkxGE6SN-0Rw";
-invokeAction({ action: "getContactById", id });
+invokeAction({ action: "getContactById", id});
