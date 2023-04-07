@@ -21,18 +21,27 @@ async function getContactById(id) {
 
 async function addContact(data) {
   const contact = await listContacts();
-  const newContact = { ...contact, id: v4() };
+  const newContact = { id: v4(), ...data };
   contact.push(newContact);
   await fs.writeFile(contactsPath, JSON.stringify(contact));
   return newContact;
 }
 
-// function removeContact(contactId) {
-//   // ...твій код
-// }
+async function removeContact(data) {
+  const allContacts = await listContacts();
+  const index = allContacts.findIndex((item) => item.id === data.id);
+
+  const deleteProduct = allContacts[index];
+  if (index !== -1) {
+    allContacts.splice(index, 1);
+    await fs.writeFile(contactsPath, JSON.stringify(allContacts));
+  }
+  return deleteProduct ? deleteProduct : null;
+}
 
 module.exports = {
   listContacts,
   getContactById,
-  addContact
+  addContact,
+  removeContact
 };

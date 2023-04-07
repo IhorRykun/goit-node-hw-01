@@ -16,11 +16,16 @@ const invokeAction = async ({ action, id, data }) => {
     case "addContact":
       const contact = await operations.addContact(data);
       console.log(contact);
+      break;
+    case "removeContact":
+      const contactRemove = await operations.removeContact(data);
+      console.log(contactRemove);
   }
 };
 
-// id = "AeHIrLTr6JkxGE6SN-0Rw";
-// invokeAction({ action: "getContactById", id });
+// invokeAction({ action: "listContacts" });
+
+// invokeAction({ action: "getContactById", id: "05olLMgyVQdWRwgKfg5J6" });
 
 const newData = {
   name: "Ivan Semi",
@@ -28,3 +33,9 @@ const newData = {
   phone: "(099) 231-11234"
 };
 invokeAction({ action: "addContact", data: newData });
+
+
+// invokeAction({
+//   action: "removeContact",
+//   data: "c2d1eeeb-ee14-408a-b78d-f0365f9f2672"
+// });
