@@ -4,14 +4,14 @@ const { v4 } = require("uuid");
 
 const contactsPath = path.join(__dirname, "db", "contacts.json");
 
-async function listContacts() {
+async function list() {
   const contacts = await fs.readFile(contactsPath, "utf-8");
   const data = JSON.parse(contacts);
   return data;
 }
 
-async function getContactById(id) {
-  const contactsId = await listContacts();
+async function get(id) {
+  const contactsId = await list();
   const result = contactsId.find((item) => item.id === id);
   if (!result) {
     return null;
@@ -19,17 +19,17 @@ async function getContactById(id) {
   return result;
 }
 
-async function addContact(data) {
-  const contact = await listContacts();
+async function add(data) {
+  const contact = await list();
   const newContact = { id: v4(), ...data };
   contact.push(newContact);
   await fs.writeFile(contactsPath, JSON.stringify(contact));
   return newContact;
 }
 
-async function removeContact(id) {
-  const allContacts = await listContacts();
-  const contacts = await getContactById(id);
+async function remove(id) {
+  const allContacts = await list();
+  const contacts = await get(id);
   const newContact = allContacts.filter((contacts) => contacts.id !== id);
   await fs.writeFile(contactsPath, JSON.stringify(newContact));
   console.log(newContact);
@@ -37,8 +37,8 @@ async function removeContact(id) {
 }
 
 module.exports = {
-  listContacts,
-  getContactById,
-  addContact,
-  removeContact
+  list,
+  get,
+  add,
+  remove
 };

@@ -1,37 +1,25 @@
 const operations = require("./contacts");
-
-const { Command } = require("commander");
-const program = new Command();
-program
-  .option("-a, --action <type>", "choose action")
-  .option("-i, --id <type>", "user id")
-  .option("-n, --name <type>", "user name")
-  .option("-e, --email <type>", "user email")
-  .option("-p, --phone <type>", "user phone");
-
-program.parse(process.argv);
-
-const argv = program.opts();
+const argv = require("yargs").argv;
 
 const invokeAction = async ({ action, id, data }) => {
   switch (action) {
-    case "listContacts":
-      const contacts = await operations.listContacts();
+    case "list":
+      const contacts = await operations.list();
       console.log(contacts);
       break;
-    case "getContactById":
-      const result = await operations.getContactById(id);
+    case "get":
+      const result = await operations.get(id);
       console.log(result);
       if (!result) {
         throw new errors(`Product with ${id}no found`);
       }
       break;
-    case "addContact":
-      const contact = await operations.addContact(data);
+    case "add":
+      const contact = await operations.add(data);
       console.log(contact);
       break;
-    case "removeContact":
-      const contactRemove = await operations.removeContact(id);
+    case "remove":
+      const contactRemove = await operations.remove(id);
       console.log(contactRemove);
       break;
 
