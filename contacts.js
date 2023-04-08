@@ -19,9 +19,14 @@ async function get(id) {
   return result;
 }
 
-async function add(data) {
+async function add(name, email, phone) {
   const contact = await list();
-  const newContact = { id: v4(), ...data };
+  const newContact = {
+    id: v4(),
+    name: name,
+    email: email,
+    phone: phone
+  };
   contact.push(newContact);
   await fs.writeFile(contactsPath, JSON.stringify(contact));
   return newContact;

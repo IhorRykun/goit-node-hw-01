@@ -59,5 +59,10 @@
     "email": "Donec.elementum@scelerisquescelerisquedui.net",
     "phone": "(748) 206-2688"
   },
-  { "id": "7f368ae8-89b2-450f-b8e5-e21ec67942e6" }
+  {
+    "id": "f41f75da-05dc-406e-ac6c-1c8a64dfd3c8",
+    "name": "Mango",
+    "email": "mango@gmail.com",
+    "phone": "322-22-22"
+  }
 ]

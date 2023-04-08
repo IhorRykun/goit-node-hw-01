@@ -1,7 +1,7 @@
 const operations = require("./contacts");
 const argv = require("yargs").argv;
 
-const invokeAction = async ({ action, id, data }) => {
+const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
     case "list":
       const contacts = await operations.list();
@@ -15,7 +15,7 @@ const invokeAction = async ({ action, id, data }) => {
       }
       break;
     case "add":
-      const contact = await operations.add(data);
+      const contact = await operations.add(name, email, phone);
       console.log(contact);
       break;
     case "remove":
